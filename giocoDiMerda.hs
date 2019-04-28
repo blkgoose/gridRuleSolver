@@ -40,7 +40,7 @@ main = print solution
         gen 0 nodes = nodes
         gen n nodes = map (\oldNode -> Node (nodeVal oldNode) (gen (n-1) $ next oldNode)) nodes
 
-        steps = 50
+        steps = 95
 
         endNodes :: Node -> [[Vec]]
         endNodes (Node v []) = [v]
