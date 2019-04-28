@@ -8,7 +8,9 @@ type Node = Tree [Vec]
 
 type Vec = (Int, Int)
 
-(<+>) (ax,ay) (bx, by) = (ax+bx, ay+by)
+(§+)  (ax, ay) (bx, by) = (ax+bx, ay+by)
+(§<=) (ax, ay) (bx, by) = ax <= bx && ay <= by
+(§>=) (ax, ay) (bx, by) = ax >= bx && ay >= by
 (|>) x f = f x
 
 nodeVal :: Tree a -> a
