@@ -47,11 +47,11 @@ main = print solution
         endNodes (Node _ b) = concat $ map endNodes b
 
         tree :: [Node]
-        tree = gen steps [(Node [(1,1)] [])]
-
-        solution = head tree
-                   |> endNodes
-                   |> sortBy (comparing longer)
-                   |> take 1
+        tree = gen steps everyPos
             where
-                longer = negate . length
+                everyPos = map (\p -> Node [p] []) [(x, y) | x <- [1..10], y <- [1..10]]
+
+        solution = concatMap endNodes tree
+                   |> map (reverse)
+                   |> filter (\p -> length p == steps + 1)
+                   |> take 1
