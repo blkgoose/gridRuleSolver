@@ -27,16 +27,14 @@ main = print solution
         next :: Node -> [Node]
         next (Node pos _) = out
             where
-            at    = last pos
+            at    = head pos
             moves = [(0,3),(0,-3),(3,0),(-3,0),(2,2),(-2,2),(2,-2),(-2,-2)]
             out = moves
-                  |> map    (at <+>)
-                  |> filter (\p -> not $ elem p pos)
-                  |> filter ((>0)   . fst)
-                  |> filter ((<=10) . fst)
-                  |> filter ((>0)   . snd)
-                  |> filter ((<=10) . snd)
-                  |> map    (\x -> Node (pos ++ [x]) [])
+                  |> map    (at §+)
+                  |> filter (not . inList pos)
+                  |> filter (§<= (10,10))
+                  |> filter (§>= (1,1))
+                  |> map    (\x -> Node (x : pos) [])
 
         gen :: Int -> [Node] -> [Node]
         gen 0 nodes = nodes
